@@ -8,6 +8,7 @@
 
 import UIKit
 import MediaPlayer
+import RealmSwift
 
 //*****************************************************************
 // NowPlayingViewControllerDelegate
@@ -38,16 +39,18 @@ class NowPlayingViewController: UIViewController {
     @IBOutlet weak var stationDescLabel: UILabel!
     @IBOutlet weak var volumeParentView: UIView!
     @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
-    
+    @IBOutlet weak var nextButton: UIButton!    
     // MARK: - Properties
     
     var currentStation: RadioStation!
     var currentTrack: Track!
     
+    let realm = try! Realm()
+    
     var newStation = true
     var nowPlayingImageView: UIImageView!
     let radioPlayer = FRadioPlayer.shared
+    
     
     var mpVolumeSlider: UISlider?
 
@@ -148,9 +151,23 @@ class NowPlayingViewController: UIViewController {
     
     func updateTrackMetadata(with track: Track?) {
         guard let track = track else { return }
+        let trackHistory = RealmTrack()
+
         
         currentTrack.artist = track.artist
         currentTrack.title = track.title
+        
+        trackHistory.artist = currentTrack.artist
+        trackHistory.songTitle = currentTrack.title
+        
+        let exemptRadioTitles = ["The Music Starts Here", "Newport Folk Radio", "The Alt Vault", ]
+        let exemptSongTitles = ["The Alt Vault", "Newport Folk Radio", "Classic Rock", "Radio 1190"]
+        
+        if !exemptRadioTitles.contains(currentTrack.artist)  && !exemptSongTitles.contains(currentTrack.title){
+        try! realm.write {
+            realm.add(trackHistory)
+            }
+        }
         
         updateLabels()
     }
@@ -218,6 +235,7 @@ class NowPlayingViewController: UIViewController {
         }
         
         updateLabels(with: message, animate: animate)
+        
     }
     
     //*****************************************************************
@@ -322,7 +340,7 @@ class NowPlayingViewController: UIViewController {
         let activityViewController = UIActivityViewController(activityItems: [songToShare, currentTrack.artworkImage!], applicationActivities: nil)
         activityViewController.completionWithItemsHandler = {(activityType: UIActivityType?, completed:Bool, returnedItems:[Any]?, error: Error?) in
             if completed {
-                // do something on completion if you want
+                print("Completed")
             }
         }
         present(activityViewController, animated: true, completion: nil)

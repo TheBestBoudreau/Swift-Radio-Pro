@@ -16,6 +16,77 @@
         </array>
     </customFonts>
     <scenes>
+        <!--History Table View-->
+        <scene sceneID="TrW-Lt-VXZ">
+            <objects>
+                <viewController id="FnK-sU-4Mf" customClass="HistoryTableView" customModule="SwiftRadio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nJo-i4-Pkq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fe8-SC-SVH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="history" id="hdt-AH-Tmf" customClass="HistoryTableViewCell" customModule="SwiftRadio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hdt-AH-Tmf" id="LCp-97-LwS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NN-dt-o88">
+                                                    <rect key="frame" x="10" y="0.0" width="89" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-Zt-aYC">
+                                                    <rect key="frame" x="10" y="22" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="f5c-Zt-aYC" firstAttribute="top" secondItem="8NN-dt-o88" secondAttribute="bottom" constant="1" id="516-qN-6mx"/>
+                                                <constraint firstAttribute="bottom" secondItem="f5c-Zt-aYC" secondAttribute="bottom" constant="0.5" id="6dD-ao-sIg"/>
+                                                <constraint firstItem="8NN-dt-o88" firstAttribute="leading" secondItem="LCp-97-LwS" secondAttribute="leading" constant="10" id="Cx5-eS-uWI"/>
+                                                <constraint firstItem="f5c-Zt-aYC" firstAttribute="leading" secondItem="LCp-97-LwS" secondAttribute="leading" constant="10" id="Del-gO-pVg"/>
+                                                <constraint firstItem="8NN-dt-o88" firstAttribute="top" secondItem="LCp-97-LwS" secondAttribute="top" id="Uxx-e5-bhZ"/>
+                                                <constraint firstItem="f5c-Zt-aYC" firstAttribute="top" secondItem="8NN-dt-o88" secondAttribute="bottom" constant="1" id="d1T-k4-cQ7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="artistLabel" destination="f5c-Zt-aYC" id="5V4-dp-AjT"/>
+                                            <outlet property="songNameLabel" destination="8NN-dt-o88" id="T0y-Av-E25"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FnK-sU-4Mf" id="c17-Co-5GG"/>
+                                    <outlet property="delegate" destination="FnK-sU-4Mf" id="AIm-ne-eQC"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fe8-SC-SVH" firstAttribute="leading" secondItem="Pw6-fm-GGv" secondAttribute="leading" id="IUY-KM-ldm"/>
+                            <constraint firstItem="fe8-SC-SVH" firstAttribute="bottom" secondItem="Pw6-fm-GGv" secondAttribute="bottom" id="QMh-Tu-y3d"/>
+                            <constraint firstItem="fe8-SC-SVH" firstAttribute="trailing" secondItem="Pw6-fm-GGv" secondAttribute="trailing" id="XAs-6Y-LSa"/>
+                            <constraint firstItem="fe8-SC-SVH" firstAttribute="top" secondItem="nJo-i4-Pkq" secondAttribute="top" id="dAM-JZ-cHO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pw6-fm-GGv"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2TC-nl-l5A"/>
+                    <connections>
+                        <outlet property="tableView" destination="fe8-SC-SVH" id="ynb-4S-4H1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wFd-5v-ysQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="728" y="-447"/>
+        </scene>
         <!--Swift Radio-->
         <scene sceneID="7ik-k3-I0U">
             <objects>
@@ -139,9 +210,9 @@
                         <viewLayoutGuide key="safeArea" id="Rf9-Sj-GRF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Swift Radio" id="OKR-cw-CyI">
-                        <barButtonItem key="leftBarButtonItem" image="icon-hamburger" id="CEi-nw-1dN">
+                        <barButtonItem key="leftBarButtonItem" title="History" id="WUJ-LD-4pt">
                             <connections>
-                                <segue destination="61j-j7-6ve" kind="modal" identifier="ShowMenu" id="MJP-ZO-92b"/>
+                                <segue destination="FnK-sU-4Mf" kind="push" id="ntY-TS-E3I"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -446,10 +517,7 @@
                                             <constraint firstAttribute="height" constant="26" id="WCg-3H-2ht"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="share">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
+                                        <state key="normal" image="share"/>
                                         <connections>
                                             <action selector="shareButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="R3w-2U-Wb8"/>
                                         </connections>
@@ -783,7 +851,6 @@
         <image name="btn-play" width="44" height="44"/>
         <image name="btn-previous" width="44" height="44"/>
         <image name="btn-stop" width="44" height="44"/>
-        <image name="icon-hamburger" width="22" height="16"/>
         <image name="logo" width="90" height="35"/>
         <image name="share" width="32" height="32"/>
         <image name="stationImage" width="120" height="75"/>
@@ -792,6 +859,6 @@
         <image name="vol-min" width="11" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2md-Am-VN1"/>
+        <segue reference="Z22-bU-Ytg"/>
     </inferredMetricsTieBreakers>
 </document>
